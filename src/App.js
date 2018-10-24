@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import '@material/react-button/dist/button.css';
-import '@material/react-button/dist/card.css';
-import '@material/react-button/dist/text-field.css';
-import '@material/react-button/dist/ripple.css';
-import '@material/react-button/dist/line-ripple.css';
-
-import UserForm from "./components/UserForm";
 import { getUser } from "./apiMethods/requests";
+import UserForm from "./components/UserForm";
 
 class App extends Component {
   state = {
-    name: null,
+    accountId: null,
+    summonerId: null,
+    summonerName: null,
     summonerLevel: null,
-    id: null,
     tier: null,
     rank: null,
     wins: null,
@@ -26,7 +21,7 @@ class App extends Component {
     const userName = e.target.elements.username.value;
     getUser(userName).then(data => {
         console.log(data);
-        this.setState({name:data.name});
+        this.setState({summonerName:data.name});
     });
   }
 
@@ -35,9 +30,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>mello</h1>
-        <UserForm searchUser={this.searchUser} />
-      { this.state.name ? <p>Name: { this.state.name } </p> :
-        <p>Search by username</p> }
+        <UserForm searchUser={this.searchUser} /> 
+       { this.state.summonerName ? <p>Name: { this.state.summonerName } </p> :
+        <p>Search by username</p> } 
         </header>
       </div>
     );

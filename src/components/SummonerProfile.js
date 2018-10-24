@@ -9,6 +9,7 @@ class SummonerProfile extends Component {
      Summoner Wins:
      Summoner Losses:
             */
+           
         )
     }
 }

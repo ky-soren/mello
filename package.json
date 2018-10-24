@@ -11,6 +11,7 @@
     "@material/react-ripple": "^0.5.0",
     "@material/react-text-field": "^0.5.1",
     "ajv": "^6.5.4",
+    "npm": "^6.4.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-scripts": "2.0.4"
