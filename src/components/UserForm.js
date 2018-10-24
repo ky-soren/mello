@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import Button from '@material/react-button';
-import TextField, { HelperText, Input } from '@material/react-text-field';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
-import '@material/react-button/dist/button.min.css';
-import '@material/react-text-field/dist/text-field.min.css';
+import './UserForm.css';
 
-const UserForm = (props) => {
-  return (
-    <form onSubmit={props.searchUser}>
-      <input style={{ display:"inline-flex"}}
-             type="text"
-             name="username"
-      />
-      <Button raised="true">Search</Button>
-    </form>
-  )
+class UserForm extends Component {
+  state = {value: ''};
+
+  render() {
+    return (
+      <form 
+        onSubmit={e => this.props.searchUser(e, this.state.value)}>
+        <TextField
+          className="searchUserTextField"
+          autoFocus={true}
+          variant="filled"
+          fullWidth={true}
+          label="Summoner name"
+          value={this.state.value}
+          onChange={e => this.setState({value: e.target.value})}>
+          </TextField>
+        <Button 
+          variant="contained"
+          size="large"
+          color="primary"> Search
+          </Button>
+      </form>
+    );
+  }
 }
 
 export default UserForm;

@@ -16,9 +16,10 @@ class App extends Component {
     losses: null
   }
 
-  searchUser = (e) => {
+  searchUser = (e, userName) => {
     e.preventDefault();
-    const userName = e.target.elements.username.value;
+    console.log(userName)
+    // const userName = e.target.elements.username.value;
     getUser(userName).then(data => {
         console.log(data);
         this.setState({summonerName:data.name});
@@ -31,8 +32,8 @@ class App extends Component {
         <header className="App-header">
           <h1>mello</h1>
         <UserForm searchUser={this.searchUser} /> 
-       { this.state.summonerName ? <p>Name: { this.state.summonerName } </p> :
-        <p>Search by username</p> } 
+       {/* { this.state.summonerName ? <p>Name: { this.state.summonerName } </p> : */}
+        {/* <p>Search by username</p> }  */}
         </header>
       </div>
     );
