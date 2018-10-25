@@ -1,28 +1,45 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { getUser } from "./apiMethods/requests";
+import { getUser, getUserMetrics } from "./apiMethods/requests";
 import UserForm from "./components/UserForm";
+import SummonerProfile from "./components/SummonerProfile";
 
 class App extends Component {
   state = {
-    accountId: null,
-    summonerId: null,
-    summonerName: null,
-    summonerLevel: null,
-    tier: null,
-    rank: null,
-    wins: null,
-    losses: null
+    accountId: '',
+    summonerId: '',
+    summonerName: '',
+    summonerLevel: '',
+    tier: '',
+    rank: '',
+    leaguePoints: '',
+    wins: '',
+    losses: ''
   }
 
   searchUser = (e, userName) => {
     e.preventDefault();
-    console.log(userName)
-    // const userName = e.target.elements.username.value;
     getUser(userName).then(data => {
-        console.log(data);
-        this.setState({summonerName:data.name});
+      if (data.name) {
+        this.setState({
+          summonerName:data.name, 
+          accountId:data.accountId, 
+          summonerId:data.id,
+          summonerLevel:data.summonerLevel
+        });
+
+        getUserMetrics(data.id).then(data => {
+            this.setState({
+              tier:data.tier, 
+              rank:data.rank, 
+              wins:data.wins, 
+              losses:data.losses,
+              leaguePoints:data.leaguePoints
+            });
+          console.log(data);
+        })
+      }
     });
   }
 
@@ -32,8 +49,14 @@ class App extends Component {
         <header className="App-header">
           <h1>mello</h1>
         <UserForm searchUser={this.searchUser} /> 
-       {/* { this.state.summonerName ? <p>Name: { this.state.summonerName } </p> : */}
-        {/* <p>Search by username</p> }  */}
+       { this.state.summonerName ? 
+          <SummonerProfile 
+            summonerName={this.state.summonerName}
+            tier={this.state.tier}
+            rank={this.state.rank}
+            wins={this.state.wins}
+            losses={this.state.losses} /> :
+         <p>Search by summoner name</p> } 
         </header>
       </div>
     );
