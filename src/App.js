@@ -7,15 +7,15 @@ import SummonerProfile from "./components/SummonerProfile";
 
 class App extends Component {
   state = {
-    accountId: '',
-    summonerId: '',
-    summonerName: '',
-    summonerLevel: '',
-    tier: '',
-    rank: '',
-    leaguePoints: '',
-    wins: '',
-    losses: ''
+    accountId:'',
+    summonerId:'',
+    summonerName:'',
+    summonerLevel:'',
+    tier:'',
+    rank:'',
+    leaguePoints:'',
+    wins:'',
+    losses:''
   }
 
   searchUser = (e, userName) => {
