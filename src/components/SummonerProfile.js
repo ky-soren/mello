@@ -25,6 +25,9 @@ class SummonerProfile extends Component {
                 <CardContent>
                     <Typography gutterBottom variant="h4" component="p">
                         {this.props.summonerName}
+                    </Typography>
+                    <Typography>
+                        {this.props.unRanked}
                     </Typography>    
                     <Typography component="p">
                          {this.props.tier} {this.props.rank}

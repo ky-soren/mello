@@ -10,7 +10,7 @@ class App extends Component {
     accountId:'',
     summonerId:'',
     summonerName:'',
-    summonerLevel:'',
+    // summonerLevel:'',
     tier:'',
     rank:'',
     leaguePoints:'',
@@ -22,21 +22,23 @@ class App extends Component {
     e.preventDefault();
     getUser(userName).then(data => {
       if (data.name) {
-        this.setState({
-          summonerName:data.name, 
-          accountId:data.accountId, 
-          summonerId:data.id,
-          summonerLevel:data.summonerLevel
-        });
-
+        console.log(data);
         getUserMetrics(data.id).then(data => {
             this.setState({
-              tier:data.tier, 
-              rank:data.rank, 
-              wins:data.wins, 
-              losses:data.losses,
-              leaguePoints:data.leaguePoints
             });
+            if (!(data === undefined)) {
+              this.setState({
+                summonerName:data.playerOrTeamName, 
+                accountId:data.accountId, 
+                summonerId:data.playerOrTeamId,
+                // summonerLevel:data.summonerLevel,
+                tier:data.tier, 
+                rank:data.rank, 
+                wins:data.wins, 
+                losses:data.losses,
+              leaguePoints:data.leaguePoints
+          });
+        };
           console.log(data);
         })
       }
