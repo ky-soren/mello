@@ -1,4 +1,4 @@
-League analytics meets Material Design rendered with React.
+League analytics meets Material Design, rendered with React.
 
 Supports:
 - Solo Queue
